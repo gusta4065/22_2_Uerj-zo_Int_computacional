@@ -19,6 +19,7 @@ lab.set('Q',['P','M'])
 lab.set('R',['O'])
 
 function backtraking(start, visited = new Set()){
+    console.log(start)
     const destinations = lab.get(start)
     for (const destination of destinations) {
         if (destination === 'S') {
