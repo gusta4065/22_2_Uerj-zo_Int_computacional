@@ -7,7 +7,8 @@
    -aumentar temperatura
    -diminuir temperatura
 
-   @@ panela de pressão pega pressão com 120° Celsius
+   @@ panela de pressão "pega pressão" com 120° Celsius
+   @@ "pega pressão": pressão interna entre 1,44 e 2atm
    @@ 0°C =  273.15K
    @@ Pi/Ti= P/T
    @@ P = Pi*T/Ti
@@ -18,7 +19,7 @@ def Celsius_to_kevin(temp):
 def Final_pressure(temp):
     return (PRESSAO_I*temp)/TEMP_AMBIANTE
 
-PRESSAO_I = 1 #em at
+PRESSAO_I = 1 #em atm
 TEMP_AMBIANTE = Celsius_to_kevin(25)    
 
 class Pan:
@@ -27,14 +28,16 @@ class Pan:
         self.alimento = 'feijão'
         self.tempo = (20*60)
         self.teperature = TEMP_AMBIANTE
-        self.pressão = PRESSAO_I
+        self.pressao = PRESSAO_I
 
 
     def Raise_temp(self):
-        self.teperature += 10
-        self.pressão = Final_pressure(self.teperature)
+        self.teperature += 5
+        self.pressao = Final_pressure(self.teperature)
+        print('pressão:',self.pressao)
 
     def Decrease_temp(self):
-        self.teperature -= 5
-        self.pressão = Final_pressure(self.teperature)
+        self.teperature -= 3
+        self.pressao = Final_pressure(self.teperature)
+        print('pressão:',self.pressao)
     
