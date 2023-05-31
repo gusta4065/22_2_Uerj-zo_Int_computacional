@@ -22,8 +22,26 @@ fzP.addRules('Pressão_Critica',1.75,fzP.xMax)
 
 
 # definindo funçoes
-def defuzzicador(miT,miP):
+def defuzzicador(miT,miP,regrasA):
     return
+
+def checkRegras(regraT,regraP):
+    if regraT == 'Calor_Fraco' and (regraP == 'Pressao_Fraca' or regraP == 'Pressao_Media' or regraP == 'Pressao_Forte'):
+        return'Calor_Critico'
+    elif regraT == 'Calor_Medio' and (regraP == 'Pressao_Fraca' or regraP == 'Pressao_Media'):
+        return'Calor_Critico'
+    elif regraT == 'Calor_Medio' and regraP == 'Pressao_Forte':
+        return'Calor_Forte'
+    elif regraT == 'Calor_Medio' and regraP == 'Pressao_Critica':
+        return'Calor_Fraco'
+    elif regraT == 'Calor_Forte' and (regraP == 'Pressao_Fraca' or regraP == 'Pressao_Media' or regraP == 'Pressao_Forte'):
+        return'Calor_Forte'
+    elif regraT == 'Calor_Forte' and regraP == 'Pressao_Critica':
+        return'Calor_Fraco'
+    elif regraT == 'Calor_Critico' and (regraP == 'Pressao_Fraca' or regraP == 'Pressao_Media'):
+        return'Calor_Medio'
+    elif regraT == 'Calor_Critico' and regraP == 'Pressao_Critica':
+        return'Calor_Fraco'
 
 #inciando o cozimento 
 """
@@ -36,16 +54,12 @@ def defuzzicador(miT,miP):
 
 while(panela.teperature <= kevin(70)): #pan.Celsius_to_kevin(35)
     panela.Raise_temp()
-    miT = set()
-    miP = set()
+    regraAcionadas= set()
     for regraT in fzT.getRulesNames():
-        miT.add(fzT.retonarMi(panela.teperature,regraT))
         for regraP in fzP.getRulesNames():
-            miP.add(fzP.retonarMi(panela.pressao,regraP))
-    miT = sorted(miT,reverse=True)
-    miP = sorted(miP,reverse=True)
+            regraAcionadas.add(checkRegras(regraT,regraP))
     print('regraT:',regraT,'RegraP:',regraP)
-    print('dois valores mais altos',miT,miP)
+    print('dois valores mais altos')
 
 
 
