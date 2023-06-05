@@ -23,18 +23,18 @@ class Fuzzy:
     
 
     #calclando premissas
-    def __getB(self,a,c):
+    def getB(self,a,c):
         return (a+c)/2
     def __premiseLowerB(self,a,b,x):
         return 1 - (b-x)/(b-a)
     def __premiseHigherB(self,b,c,x):
         return 1 - (c-x)/(c-b)
     def __getPremise(self,a,c,x):
-        b = self.__getB(a,c)
-        if x>=b:
-            return self.__premiseHigherB(b,c,x)
-        else:
+        b = self.getB(a,c)
+        if x<=b:
             return self.__premiseLowerB(a,b,x)
+        else:
+            return self.__premiseHigherB(b,c,x)
         
     """def retornaUPremissa(self,x):
         premissaV = []

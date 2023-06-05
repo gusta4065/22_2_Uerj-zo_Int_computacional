@@ -7,7 +7,7 @@
    -aumentar temperatura
    -diminuir temperatura
 
-    *esse exemplo so tem um alimento então não tara essas funcionalidades
+    *esse exemplo so tem um alimento então não tera essas funcionalidades
 
    @@ panela de pressão "pega pressão" com 120° Celsius
    @@ "pega pressão": pressão interna entre 1,44 e 2atm
@@ -37,10 +37,11 @@ class Pan:
     def Raise_temp(self):
         self.teperature += 5
         self.pressao = self.__final_pressure(self.teperature)
-        print('temp:',self.teperature)
+        print('temp:',self.teperature - 273.15,'ºC')
         print('pressão:',self.pressao)
 
     def Decrease_temp(self):
         self.teperature -= 3
         self.pressao = self.__final_pressure(self.teperature)
+        print('temp:',self.teperature - 273.15,'ºC')
         print('pressão:',self.pressao)
