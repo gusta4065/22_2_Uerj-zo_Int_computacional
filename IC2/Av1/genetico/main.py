@@ -1,7 +1,6 @@
 import random
 import individual as id
 Ind = id.Individual
-#Ind().mating
 POPULATION_S = 100
 
 gen = 1
