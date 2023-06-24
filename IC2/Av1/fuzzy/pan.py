@@ -1,13 +1,16 @@
 """
           metodos de uma panela
    imaginando uma panela de pressão eletrica, ela pode:
-   -abrir
-   -colocar o alimento
-   -fechar
+   -abrir *
+   -colocar o alimento *
+   -fechar *
    -aumentar temperatura
    -diminuir temperatura
 
-   @@ panela de pressão pega pressão com 120° Celsius
+    *esse exemplo so tem um alimento então não tera essas funcionalidades
+
+   @@ panela de pressão "pega pressão" com 120° Celsius
+   @@ "pega pressão": pressão interna entre 1,44 e 2atm
    @@ 0°C =  273.15K
    @@ Pi/Ti= P/T
    @@ P = Pi*T/Ti
@@ -15,11 +18,9 @@
 
 def Celsius_to_kevin(temp):
     return (temp + 273.15)
-def Final_pressure(temp):
-    return (PRESSAO_I*temp)/TEMP_AMBIANTE
 
-PRESSAO_I = 1 #em at
-TEMP_AMBIANTE = Celsius_to_kevin(25)    
+PRESSAO_I = 1.1 #em atm
+TEMP_AMBIANTE = Celsius_to_kevin(25) #25C°   
 
 class Pan:
       
@@ -27,14 +28,20 @@ class Pan:
         self.alimento = 'feijão'
         self.tempo = (20*60)
         self.teperature = TEMP_AMBIANTE
-        self.pressão = PRESSAO_I
+        self.pressao = PRESSAO_I
+        self.status = 0 # 0 = cru 1 = cozido
 
+    def __final_pressure(self,temp):
+        return (PRESSAO_I*temp)/TEMP_AMBIANTE
 
     def Raise_temp(self):
-        self.teperature += 10
-        self.pressão = Final_pressure(self.teperature)
+        self.teperature += 5
+        self.pressao = self.__final_pressure(self.teperature)
+        print('temp:',self.teperature - 273.15,'ºC')
+        print('pressão:',self.pressao)
 
     def Decrease_temp(self):
-        self.teperature -= 5
-        self.pressão = Final_pressure(self.teperature)
-    
+        self.teperature -= 3
+        self.pressao = self.__final_pressure(self.teperature)
+        print('temp:',self.teperature - 273.15,'ºC')
+        print('pressão:',self.pressao)
